@@ -61,3 +61,7 @@ gem "devise", "~> 4.8"
 gem "doorkeeper", "~> 5.5"
 
 gem "rack-cors", "~> 1.1"
+
+gem "faker", "~> 2.21"
+
+gem "table_print", "~> 1.5"

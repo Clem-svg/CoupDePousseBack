@@ -10,10 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_16_102200) do
+ActiveRecord::Schema.define(version: 2022_07_17_094930) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "gardens", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "orientation"
+    t.string "floor_type"
+    t.boolean "is_available"
+    t.boolean "parking"
+    t.boolean "tools_available"
+    t.integer "surface"
+    t.string "image_url"
+    t.string "street_number"
+    t.string "street_name"
+    t.string "zip_code"
+    t.string "city"
+    t.string "country"
+    t.float "latitude"
+    t.float "longitude"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_gardens_on_user_id"
+  end
 
   create_table "oauth_access_tokens", force: :cascade do |t|
     t.bigint "resource_owner_id"
