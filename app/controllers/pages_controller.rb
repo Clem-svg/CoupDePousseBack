@@ -1,6 +1,6 @@
 class PagesController < ActionController::Base
     def home
-        @application = Doorkeeper::Application.find_by(name: 'web Client')
+        @application = Doorkeeper::Application.find_by(name: 'React')
     
         @application = {
           name: @application.name,

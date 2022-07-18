@@ -1,72 +1,25 @@
-# frozen_string_literal: true
+module Api
+  module V1
+    class UsersController < ApiController
+      before_action :doorkeeper_authorize!
+      before_action :current_user
+      respond_to    :json
 
-class Api::V1::UsersController < ApiController
-    include ApplicationHelper
-    # GET /users or /users.json
-    def index
-      @users = User.all
-      format.json{ render json: @users}
-    end
-  
-    # GET /users/1 or /users/1.json
-    def show; end
-  
-    # GET /s/new
-    def new
-      @user = User.new
-    end
-  
-    # GET /users/1/edit
-    def edit; end
-  
-    # POST /users or /users.json
-    def create
-      @user = User.new(user_params)
-  
-      respond_to do |format|
-        if @user.save
-          format.html { redirect_to user_url(@user), notice: 'User was successfully created.' }
-          format.json { render :show, status: :created, location: @user }
+      # GET /me.json
+      def me
+        if @current_user.nil?
+          render json: { error: 'Not Authorized' }, status: :unauthorized
         else
-          format.html { render :new, status: :unprocessable_entity }
-          format.json { render json: @user.errors, status: :unprocessable_entity }
+          render json: {
+            id: @current_user.id,
+            email: @current_user.email,
+            username: @current_user.username,
+            description: @current_user.description,
+            tools: @current_user.tools,
+            created_at: @current_user.created_at.iso8601
+          }, status: :ok
         end
       end
-    end
-  
-    # PATCH/PUT /users/1 or /users/1.json
-    def update
-      respond_to do |format|
-        if @user.update(user_params)
-          format.html { redirect_to user_url(@user), notice: 'User was successfully updated.' }
-          format.json { render :show, status: :ok, location: @user }
-        else
-          format.html { render :edit, status: :unprocessable_entity }
-          format.json { render json: @user.errors, status: :unprocessable_entity }
-        end
-      end
-    end
-  
-    # DELETE /users/1 or /users/1.json
-    def destroy
-      @user.destroy
-  
-      respond_to do |format|
-        format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-        format.json { head :no_content }
-      end
-    end
-  
-    private
-  
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
-  
-    # Only allow a list of trusted parameters through.
-    def user_params
-      params.require(:user).permit(:title, :body)
     end
   end
-  
+end

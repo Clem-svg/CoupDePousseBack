@@ -4,7 +4,7 @@ namespace :api do
             post '/', to: 'registrations#create', as: :user_registration
         end
         resources :gardens
-
+        get '/users/me', to: 'users#me'
     end
 end
 
