@@ -1,9 +1,9 @@
-# frozen_string_literal: true
-
 module Api
     module V1
       class GardensController < ApiController
         before_action :set_garden, only: %i[show edit update destroy]
+        before_action :doorkeeper_authorize!, only: %i[show edit update destroy]
+
   
         # GET /gardens or /gardens.json
         def index
@@ -28,39 +28,32 @@ module Api
   
         # POST /gardens or /gardens.json
         def create
-          @garden = Garden.new(garden_params)
+          @garden = Garden.new(garden_params.merge(user_id: current_user.id))
   
-          respond_to do |format|
             if @garden.save
-              format.html { redirect_to api_v1_garden_url(@garden), notice: 'Garden was successfully created.' }
-              format.json { render :show, status: :created, location: @garden }
+              render json: @garden
+              # format.json { render :show, status: :created, location: @garden }
             else
-              format.html { render :new, status: :unprocessable_entity }
               format.json { render json: @garden.errors, status: :unprocessable_entity }
-            end
           end
         end
   
         # PATCH/PUT /gardens/1 or /gardens/1.json
         def update
-          respond_to do |format|
             if @garden.update(garden_params)
-              format.html { redirect_to api_v1_garden_url(@garden), notice: 'Garden was successfully updated.' }
-              format.json { render :show, status: :ok, location: @garden }
+              render json: @garden
             else
-              format.html { render :edit, status: :unprocessable_entity }
-              format.json { render json: @garden.errors, status: :unprocessable_entity }
-            end
+              render json: @garden.errors, status: :unprocessable_entity
           end
         end
   
         # DELETE /gardens/1 or /gardens/1.json
         def destroy
-          @garden.destroy
-  
-          respond_to do |format|
-            format.html { redirect_to api_v1_gardens_url, notice: 'Garden was successfully destroyed.' }
-            format.json { head :no_content }
+          if @garden.user_id == current_user.id
+            @garden.destroy
+            render json: { error: 'Garden successfully deleted' }, status: :ok    
+          else 
+            render json: { error: 'Cannot delete garden not created by this user' }, status: :unprocessable_entity
           end
         end
   
@@ -74,7 +67,7 @@ module Api
   
         # Only allow a list of trusted parameters through.
         def garden_params
-          params.require(:garden).permit(:title, :body)
+          params.require(:garden).permit(:title, :description, :orientation, :floor_type, :parking, :tools_available, :surface, :street_number, :street_name, :zip_code, :city, :country)
         end
       end
     end

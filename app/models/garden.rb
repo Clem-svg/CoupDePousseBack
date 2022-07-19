@@ -1,5 +1,8 @@
 class Garden < ApplicationRecord
     belongs_to :user
+    has_many :appointments
+    has_many :favorites, :dependent => :destroy
+    has_many :comments
 
     validates :title, presence: true, length: { in: 5..100 }
     validates :description, presence: true, length: { in: 20..1000 }

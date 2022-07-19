@@ -10,10 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_17_094930) do
+ActiveRecord::Schema.define(version: 2022_07_19_073956) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "appointments", force: :cascade do |t|
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.text "message_contact"
+    t.bigint "guest_id"
+    t.bigint "host_id"
+    t.bigint "garden_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["garden_id"], name: "index_appointments_on_garden_id"
+    t.index ["guest_id"], name: "index_appointments_on_guest_id"
+    t.index ["host_id"], name: "index_appointments_on_host_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "content"
+    t.bigint "garden_id"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["garden_id"], name: "index_comments_on_garden_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "garden_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["garden_id"], name: "index_favorites_on_garden_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
 
   create_table "gardens", force: :cascade do |t|
     t.string "title"

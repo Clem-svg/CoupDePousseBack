@@ -3,7 +3,11 @@ namespace :api do
         scope :users, module: :users do
             post '/', to: 'registrations#create', as: :user_registration
         end
-        resources :gardens
+        resources :gardens do
+            resources :comments
+            resources :favorites
+            resources :appointments
+          end
         get '/users/me', to: 'users#me'
     end
 end
@@ -15,3 +19,8 @@ scope :api do
           end
     end
 end
+
+
+
+
+  
