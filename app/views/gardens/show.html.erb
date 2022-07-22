@@ -1,0 +1,61 @@
+<div class="container bg-light-primary text-center my-5">
+  <br>
+  <h5 class="mb-5"> <%= @garden.title %> </h5>
+
+  <div class="row row-top">
+    <!-- Picture -->
+    <%
+=begin%>
+ <div class="col-md-6">
+      <% if @garden.picture.attached? %>
+        <%= image_tag @garden.picture, alt: 'picture', class: 'img-fluid picture-garden-show' %>
+      <% else %>
+        <img class="img-fluid picture-garden-show" src="https://images.unsplash.com/photo-1438109382753-8368e7e1e7cf?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80">
+      <% end %>
+    </div> 
+<%
+=end%>
+
+    <!-- description -->
+    <div class="col-md-6 text-left  ">
+      <h5>Description :</h5>
+      <h6 class="mb-3"><%= @garden.description %></h6>
+      <p>Surface : <%= @garden.surface %></p>
+      <p>Orientation : <%= @garden.orientation %></p>
+      <p>Type de sol : <%= @garden.floor_type %></p>
+      <p>Outils disponibles : <% if @garden.tools_available %> <%= "Oui" %> <% else %> <%= "Non" %> <% end %></p>
+      <p>Parking : <% if @garden.parking %> <%= "Possibilité de se garer" %> <% else %> <%= "Pas d'emplacement pour se garer" %> <% end %></p>
+
+      <!-- LIKE / UNLIKE -->
+      <div class="like-unlike mb-2">
+      <% if current_user %>
+        <% pre_favorite = @garden.favorites.find { |favorite| favorite.user_id == current_user.id} %>
+        <% if pre_favorite %>
+        <%= link_to image_tag("heartfull.png"), garden_favorite_path(@garden, pre_favorite), method: :delete %>
+        <% else %>
+        <%= link_to image_tag("heart.png"), garden_favorites_path(@garden), :method => 'POST' %>
+        <% end %>
+      <% end %>
+      </div>
+
+    <!-- Contact-appointment -->
+    <% if current_user != nil%>
+      <%= link_to "Demander un rendez-vous", new_garden_appointment_path((params[:garden_id] = @garden.id), params[:id]), class: "btn btn-outline-success"%>
+    <% else %>
+      <p>Envie de prendre un rendez-vous ?
+        <%=link_to "Je me connecte", new_garden_appointment_path((params[:garden_id] = @garden.id), params[:id])%></p>
+    <%end%>
+    <%= link_to "Profil propriétaire", user_path(@user.id), class: "btn btn-outline-primary"%>
+    </div>
+  </div>
+
+  <br><hr>
+    <%= render partial: 'gardens/form' %>
+    <%= render partial: 'gardens/comment', collection: @garden.comments.reverse %>
+    <br>
+</div>
+
+
+
+
+

@@ -1,0 +1,24 @@
+<header>
+  <nav>
+  <div class="menu-icon">
+    <i class="fa fa-bars fa-2x"></i>
+  </div>
+  <div class="logo">
+    <%= link_to root_path do %>
+      <%= image_tag "logoblanc.png", height: 95%>
+    <% end %>
+  </div>
+  <div class="menu">
+    <ul>
+  <% if current_user == nil %>
+    <li><%= link_to "Se connecter", new_user_session_path, :class => "menu-icone" %></li>
+    <li><%= link_to "S'inscrire", new_user_registration_path, :class => "menu-icone" %></li>
+  <% else %>
+    <li><%= link_to "Mon profil", user_path(current_user), :class => "menu-icone" %></li>
+    <li><%= link_to "Se déconnecter", destroy_user_session_path, :class => "menu-icone", :method => 'DELETE' %></li>
+    <% end %>
+    </ul>
+  </div>
+  </nav>
+</header>
+<br>

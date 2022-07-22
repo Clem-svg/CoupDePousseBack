@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h2>Votre rendez-vous au <%= @appointment.garden.title %></h2>
+    <br>
+
+    <!-- summary -->
+<div class="row row-top">
+   <div class="col-md-6">
+      <%
+=begin%>
+ <% if @garden.picture.attached? %>
+        <%= image_tag @garden.picture, alt: 'picture', class: 'img-fluid picture-garden-show' %>
+      <% else %>
+        <img class="img-fluid picture-garden-show" src="https://images.unsplash.com/photo-1438109382753-8368e7e1e7cf?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80">
+      <% end %> 
+<%
+=end%>
+    </div>
+
+    <div class="col-md-6 text-left  ">
+      <h5>Adresse :</h5>
+      <h6 class="mb-3"><%= @garden.address %></h6>
+      <p>Outils disponibles : <% if @garden.tools_available %> <%= "Oui" %> <% else %> <%= "Non" %> <% end %></p>
+      <p>Parking : <% if @garden.parking %> <%= "Possibilité de se garer" %> <% else %> <%= "Pas d'emplacement pour se garer" %> <% end %></p>
+      <p>Date de début : <%= @appointment.show_start_date %> </p>
+      <p>Date de fin : <%= @appointment.show_end_date %></p>
+      <p> Votre <% if current_user == @appointment.host%> <%='invité'%> <%else%> <%='hôte'=%> <%end%> :
+        <%
+=begin%>
+ <% if current_user == @appointment.host%> <%= link_to @appointment.guest.name, user_path(@appointment.guest.id)%>
+          <%else%> <%= link_to @appointment.host.name, user_path(@appointment.host.id)%>
+        <%end%> 
+<%
+=end%>
+      </p>
+      <%= link_to "Modifier le rendez-vous", edit_garden_appointment_path(@appointment.garden.id, @appointment.id), class: "btn btn-outline-success"%>
+      <%= link_to "Supprimer le rendez-vous", garden_appointment_path(@appointment.garden.id, @appointment.id), class: "btn btn-outline-danger", :method => 'DELETE', :data => {:confirm => "Vous êtes sûr de vouloir supprimer ce rendez-vous ?"} %>
+
+    </div>
+</div>
+  </div>
+</div>

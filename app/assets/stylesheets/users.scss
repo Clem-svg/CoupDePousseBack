@@ -1,0 +1,40 @@
+// Place all the styles related to the Users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* Dashboard section */
+
+/* Profil */
+.avatar {
+  position: relative;
+  height: 200px;
+  width: 200px;
+  overflow: hidden;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.bg-secondary-light {
+  background-color: #ffe3e1 !important;
+  border-radius: 10px;
+}
+
+.bg-light-primary {
+  background-color: #faf9f9;
+  border-radius: 10px;
+}
+
+/* Ad */
+.dashboard-card {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Messages */
+ul {
+  list-style:none;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  }

@@ -1,0 +1,11 @@
+<div class="container">
+  <%= form_for [ @garden, Comment.new] do |f| %>
+    <div class="form-group">
+      <h5 class="mb-3">Ecrire un commentaire</h5>
+      <%= f.text_area :content, class: 'form-control comment-form'%>
+    </div>
+    <div class="form-group d-flex">
+      <button  class="btn btn-outline-success mx-auto" type="submit">Ajouter un commentaire</button>
+    </div>
+  <% end %>
+</div>

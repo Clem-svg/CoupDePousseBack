@@ -5,6 +5,13 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :email, format: URI::MailTo::EMAIL_REGEXP
+  has_many :gardens
+  has_many :appointments, through: :gardens
+  has_many :guest, foreign_key: "guest_id", class_name: "Appointment"
+  has_many :host, foreign_key: "host_id", class_name: "Appointment"
+  has_many :favorites, :dependent => :destroy
+
+  has_many :messages, dependent: :destroy
 
     # méthode d'identification issue de la documentation Devise
     def self.authenticate(email, password)

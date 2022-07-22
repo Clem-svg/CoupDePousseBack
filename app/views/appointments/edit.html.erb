@@ -1,0 +1,40 @@
+
+<% if @appointment.errors.any? %>
+  <div class="alert alert-danger text-center" role="alert">
+    <p>Nous n'avons pas réussi à modifier le rendez-vous pour la (ou les) raison(s) suivante(s) :</p>
+    <ul>
+    <% @appointment.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <br><br><br>
+    <%= form_with(model: [@garden, @appointment], local: true) do |form| %>
+
+      <div class="form-group">
+        <%= form.label :start_time ,"Quand voulez-vous vous rendre chez votre hôte ?" %>
+        <%= form.datetime_field :start_date, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :end_date, "Jusqu'à quand voulez-vous avoir accès au jardin ?" %>
+        <%= form.datetime_field :end_date, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :message_contact, "Adressez un message à votre hôte" %>
+        <%= form.text_area :message_contact, class: "form-control" %>
+      </div>
+
+        <div class="actions mt-5">
+        <%= form.submit "C'est parti !", class: "btn btn-lg btn-primary btn-block"%>
+      </div>
+    <% end %>
+  </div>
+</div>

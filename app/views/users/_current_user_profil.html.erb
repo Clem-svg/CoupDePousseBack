@@ -1,0 +1,26 @@
+<div class="container bg-light-primary text-center my-5">
+  <br>
+  <h2 class="mb-4">Mon profil<h2>
+
+  <%
+=begin%>
+ <!--avatar-->
+  <% if @user.avatar.attached? %>
+    <%= image_tag @user.avatar, alt: 'avatar', id: 'profile_picture', class: 'avatar' %>
+  <% else %>
+    <img class="avatar" src="https://images.assetsdelivery.com/compings_v2/thesomeday123/thesomeday1231709/thesomeday123170900021.jpg">
+  <% end %> 
+<%
+=end%>
+
+  <!--infos-->
+  <div class="card-body">
+    <h6 class="font-weight-light">Prénom : <p class="text-primary"><% if current_user.username != nil%> <%= @user.username%></p> <% end%>
+    <h6 class="font-weight-light">Description : <p class="text-primary"><% if current_user.description != nil%> <%= @user.description%></p> <% end%>
+    <h6 class="font-weight-light">Outils : <p class="text-primary"><% if current_user.tools != nil%> <%= @user.tools%></p> <% end%>
+    <h6 class="font-weight-light">Email : <p class="text-primary"><%= @user.email %></p>
+  </div>
+
+  <%= link_to "Editer mes informations", edit_user_path(@user), :class => "btn btn-success mb-4" %>
+  <%= link_to "Editer mes identifiants", edit_user_registration_path, :class => "btn btn-primary mb-4" %>
+</div>

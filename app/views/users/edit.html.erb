@@ -1,0 +1,38 @@
+<div class="container mb-5">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <br><br><br>
+      <%= form_for @user, html: { class: "form-signin mt-3" } do |f| %>
+        <h1 class="h3 mb-3 font-weight-normal text-center text-success">Modifer mon profil</h1>
+        <div class= "mb-3 mt-3  shadow p-3 mb-5 bg-white rounded">
+
+            <div class="form-group">
+              <%= f.label :username, "Nom" %><br />
+              <%= f.text_field :username, class: "form-control" %>
+            </div>
+            
+            <div class="form-group">
+              <%= f.label :description, "Description" %><br />
+              <%= f.text_field :description, class: "form-control" %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :description, "Outils" %><br />
+              <%= f.text_field :tools, class: "form-control" %>
+            </div>
+
+
+            <div class="form-group">
+              <%= f.label :avatar, "Avatar"%><br />
+              <%= f.file_field :avatar%>
+            </div>
+          <center>
+            <div class="actions mt-4">
+              <%= f.submit "Mettre à jour", class: "btn  btn-success " %>
+            </div>
+          <center>
+          <% end %>
+        </div>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <br><br><br>
+    <h1 style="font-size: 48px; font-weight: 400; margin: 2;">Bienvenue chez coup de pousse</h1> <img src=" https://img.icons8.com/clouds/100/000000/handshake.png" width="125" height="120" style="display: block; border: 0px;" />
+    
+    <p>Nous vous remercions pour votre inscription !
+    <br>Avant de rejoindre notre communauté de petites pousses, merci de confirmer votre inscription en cliquant sur le lien suivant :</p>
+      
+    <p><%= link_to 'Confirmer mon inscription', confirmation_url(@resource, confirmation_token: @token)%></p>
+      
+    <p>À tout de suite !</p>
+
+    <p>L'équipe Coup de pousse !</p>
+    <br>
+    <div class="icone-mail">
+      <p style="font-size:30px">&#127793; &#127793;</p> 
+    </div>
+    <br>
+  </div>
+</div>

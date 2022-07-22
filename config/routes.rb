@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  root 'pages#home'
+  root 'gardens#index'
   use_doorkeeper
   devise_for :users
+  resources :users
   resources :gardens do
     resources :comments
     resources :favorites

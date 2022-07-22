@@ -72,5 +72,4 @@ class Appointment < ApplicationRecord
       errors.add(:start_date, ": Impossible de réserver un rendez-vous dans le passé") unless start_date > DateTime.now
     end
   
-  
   end

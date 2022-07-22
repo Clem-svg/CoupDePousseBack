@@ -1,0 +1,110 @@
+
+<% content_for :nav, render('layouts/custom_nav') %>
+
+<div class="container text-center">
+  <%if current_user == nil%>
+    <%= render 'howto'%>
+  <%end%>
+  <br><br>
+  <h2>Nos petits jardinets d'amour</h2>
+  <br><br>
+</div>
+
+<!--Filter for selecting only certain gardens depending on their location -->
+
+<div class="container text-center">
+  <h3>Rechercher par ville :</h3>
+  <div class = 'form-group'>
+    <%= form_tag(gardens_path, method: :get) do %>
+      <%= text_field_tag :query %>
+      <%= submit_tag ("Rechercher"), class: "btn  btn-outline-primary" %>
+      <% end %>
+    </div>
+  <br><br>
+</div>
+
+<div class="container-map">
+  <div class="list-map">
+    <!--Cards -->
+    <% @gardens.each_with_index do |garden, i| %>
+      <div class="card card-index mb-4 mx-2">
+          <!-- Picture -->
+          <%= link_to garden_path(garden.id) do %>
+            <%
+=begin%>
+ <% if garden.picture.attached? %>
+              <%= image_tag garden.picture, alt: 'picture', class: 'img-fluid picture-garden-index' %>
+            <% else %>
+              <img class="img-fluid picture-garden-index" src="https://images.unsplash.com/photo-1438109382753-8368e7e1e7cf?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80">
+            <% end %> 
+<%
+=end%>
+          <% end %>
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">
+            <a href="<%= garden_path(garden) %>"><%= garden.title %></a>
+          </h5>
+          <h5><%= garden.surface %> m²</h5>
+          <p class="card-text"><%= garden.description %></p>
+          <div class="bottom-card mt-auto">
+            <p class="card-text"><strong><%= garden.city %></strong></p>
+            <div class="item" data-lng = "<% garden.longitude %>" data-lat=  "<% garden.latitude %>" data-title = "<% garden.title %>"></div>
+            <div class="bottom-card-info">
+              <%= link_to "En savoir plus", garden_path(garden), class: "btn btn-outline-success"%>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- Map Setting Up-->
+  <div id="map" class="map"></div>
+
+  <script>
+    function initMap() {
+      //initiate de map
+      var map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 48.610875, lng: 2.4},
+        zoom: 6,
+        zoomControl: true,
+        mapTypeControl: true,
+        scaleControl: true,
+        streetViewControl: true,
+        rotateControl: true,
+        fullscreenControl: true,
+        disableDefaultUI: true
+
+    });
+
+      //create 1 market per establishment (the entire DB is shown for now)
+      <%@gardens.each_with_index do |garden, i|%>
+          <%if garden.latitude && garden.longitude%>
+              var marker<%=i%> = new google.maps.Marker({
+                  position: {lat: <%=garden.latitude%>, lng: <%=garden.longitude%>},
+                  map: map,
+                  title: '<%=garden.title%>'
+              });
+              marker<%=i%>.addListener('click', function() {
+                  infowindow.setContent('<h6><%=garden.title%></h6><p><%=garden.description%></p> <a href="<%=garden_path(garden)%>">Voir le jardin </a>');
+                  infowindow.open(map, this);
+              });
+          <%end%>
+      <%end%>
+
+      var infowindow = new google.maps.InfoWindow({
+          maxWidth: 200
+      });
+    }
+
+
+  </script>
+
+</div>
+<div class="text-center">
+  <br>
+  <%if current_user != nil%>
+    <%= render 'howto'%>
+  <%end%>
+</div>
+<script src='https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_KEY'] %>&libraries=places&callback=initMap' async defer></script>

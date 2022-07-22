@@ -1,0 +1,28 @@
+  <!--Footer-->
+  <footer class="my-md-3 pt-md-3 ml-5 mr-5 border-top">
+    <div class="row">
+      <div class="col-12 col-md">
+        <p style="font-size:30px">&#127793;</p>
+        <small class="d-block mb-3 text-muted">&copy; Coup de pousse</small>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Mon Compte</h5>
+          <% if current_user == nil %>
+            <%= link_to "Inscription", new_user_registration_path, :class => "text-muted" %><br>
+            <%= link_to "Connexion", new_user_session_path, :class => "text-muted" %></a>
+          <% else %>
+            <%= link_to "Mon profil", user_path(current_user), :class => "text-muted" %><br>
+            <%= link_to "Se déconnecter", destroy_user_session_path, :class => "text-muted",  :method => 'DELETE' %>
+          <% end %>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Contacts</h5>
+          <%= link_to "https://www.instagram.com/coupdepousse.thp/" do %>
+            <%= image_tag "insta.png", height: 35%>
+          <% end %>
+          <%= link_to "https://www.facebook.com/coup.de.pousse.thp" do %>
+            <%= image_tag "fb.png", height: 45%>
+          <% end %>
+      </div>
+    </div>
+  </footer>

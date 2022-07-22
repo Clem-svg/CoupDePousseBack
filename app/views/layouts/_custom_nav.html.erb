@@ -1,0 +1,39 @@
+<header id="header-custom">
+  <nav>
+    <div class="menu-icon">
+      <i class="fa fa-bars fa-2x"></i>
+    </div>
+    <div class="logo">
+      <%= link_to root_path do %>
+        <%= image_tag "logoblanc.png", height: 100%>
+      <% end %>
+    </div>
+    <div class="menu">
+      <ul>
+    <% if current_user == nil %>
+      <li><%= link_to "Se connecter", new_user_session_path, :class => "menu-icone" %></li>
+      <li><%= link_to "S'inscrire", new_user_registration_path, :class => "menu-icone" %></li>
+    <% else %>
+      <li><%= link_to "Mon profil", user_path(current_user), :class => "menu-icone" %></li>
+      <li><%= link_to "Se déconnecter", destroy_user_session_path, :class => "menu-icone", :method => 'DELETE' %></li>
+      <% end %>
+      </ul>
+    </div>
+  </nav>
+
+  <% if current_user != nil %>
+    <div class="container">
+      <h2>Bonjour <%= current_user.email %> !
+      <br><br>
+      Qu'est-ce qu'on plante aujourd'hui ?</h2>
+    </div>
+  <%else%>
+    <div class="container">
+      <h2 class="mb-4">Bonjour jeune pousse !
+    <br><br>
+    Partageons la passion de la terre grâce au cojardinage</h2>
+    <center><%= link_to "Rejoins nous !", new_user_registration_path, :class => "btn btn-outline-light btn-lg" %></center>
+    </div>
+  <% end %>
+</header>
+<br>

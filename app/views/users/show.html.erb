@@ -1,0 +1,44 @@
+<% if current_user.id != @user.id %>
+  <!--Profil of an user-->
+  <%= render partial: 'user_profil'%>
+
+<% else %>
+  <!--Current_user dashboard-->
+  <div class="container">
+    <nav class="nav nav-tabs mt-3">
+    <a class="nav-item nav-link active" href="#profil" data-toggle="tab">Mon profil</a>
+    <a class="nav-item nav-link" href="#ad" data-toggle="tab">Mes annonces</a>
+    <a class="nav-item nav-link" href="#appointment" data-toggle="tab">Mes rendez-vous</a>
+    <a class="nav-item nav-link" href="#favorite" data-toggle="tab">Mes favoris</a>
+    <a class="nav-item nav-link" href="#message" data-toggle="tab">Mes messages</a>
+    </nav>
+
+    <div class="tab-content">
+      <!--Profil-->
+      <div class="tab-pane fade show active" id="profil">
+        <%= render partial: 'current_user_profil'%>
+      </div>
+      <!--Ad-->
+      <div class="tab-pane fade" id="ad">
+        <%= render partial: 'ad'%>
+      </div>
+      <!--Appointments-->
+      <div class="tab-pane fade" id="appointment">
+        <%= render partial: 'appointment'%>
+      </div>
+      <!--Favorite gardens-->
+      <div class="tab-pane fade" id="favorite">
+        <%= render partial: 'favorite'%>
+      </div>
+      <!--Messages-->
+      <div class="tab-pane fade" id="message">
+        <%
+=begin%>
+ <%= render partial: '_room'%> 
+<%
+=end%>
+      </div>
+    </div>
+  </div>
+
+<% end %>

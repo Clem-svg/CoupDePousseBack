@@ -1,0 +1,11 @@
+<p>Bonjour jeune pousse !</p>
+
+<% if @resource.try(:unconfirmed_email?) %>
+  <p>Nous vous confirmons que votre changement d'adresse mail a été pris en compte.
+  <br> Votre adresse mail est à présent la suivante : <%= @resource.unconfirmed_email %>.</p>
+<% else %>
+  <p>Votre adresse mail a bien été changée.
+  <br>Voici votre nouvelle adresse : <%= @resource.email %>.</p>
+
+  <p>À bientôt sur Coup de pousse</p>
+<% end %>

@@ -1,0 +1,29 @@
+<div class="container bg-light-primary text-center my-5">
+  <br>
+  <h2 class="border-bottom border-gray pb-3">Mes rendez-vous</h2>
+  <!--Cards appointments -->
+  <div class="row text-left mt-5 mx-5 text-center">
+    <% @appointments.each do |app| %>
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card border-info mb-3" style="max-width: 20rem;">
+          <div class="text-white card-header bg-info"><i class="fa fa-calendar"></i> <strong><%=app.start_day%></strong> <i class="fa fa-pagelines"></i> <strong><%=app.start_hour%></strong></div>
+          <br>
+          <strong class="d-block text-gray-dark">
+              <%
+=begin%>
+ <% if current_user == app.host%> <%='Avec'%> <%else%> <%='Chez'=%> <%end%> :
+              <% if current_user == app.host%> <%= link_to app.guest.name, user_path(app.guest.id)%>
+                <%else%> <%= link_to app.host.name, user_path(app.host.id)%>
+              <%end%> 
+<%
+=end%>
+          </strong>
+          <p class="mx-1"> Adresse : <%=app.garden.street_number%> <%=app.garden.street_name%> à <%=app.garden.city%> <p>
+            <%= link_to "Supprimer", garden_appointment_path(app.garden.id, app.id), class: "link small text-danger", :method => 'DELETE', :data => {:confirm => "Vous êtes sûr de vouloir supprimer ce rendez-vous ?"} %>
+          <%= link_to "Voir le RDV", garden_appointment_path(app.garden.id, app.id), :class => "link small" %>
+        </div>
+      </div>
+    <%end%>
+  </div>
+  <br>
+</div>

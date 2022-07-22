@@ -11,4 +11,17 @@ class Garden < ApplicationRecord
     validates :zip_code, presence: true
     validates :city, presence: true
     validates :country, presence: true
+
+    def address
+        [street_number, street_name, zip_code, city, country].compact.join(', ')
+      end
+
+      def self.search(query)
+        if query
+          self.where(city: query)
+        else
+          Garden.all
+        end
+      end
+
 end

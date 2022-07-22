@@ -11,18 +11,4 @@
 
   <%= @application.as_json %>
 
-
-<%
-=begin%>
- <p>For DoorkeeperAPI documentation, check <%= link_to "here", swagger_root_path %></p>
-<p>For the Bookstore API documentation, check <%= link_to "here", rswag_ui_path %></p>
-<p>You can test the API with following credentials.</p>
-<div class="container">
-  <ul>
-    <li><%= link_to "Web Books", books_path %></li>
-    <li><%= link_to "API V1 Books", api_v1_books_path %></li>
-    <li><%= link_to "API V1 Android Books", api_v1_android_books_path %></li>
-  </ul> 
-<%
-=end%>
 </div>

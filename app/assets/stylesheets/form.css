@@ -1,0 +1,76 @@
+select {
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 0;
+  margin-bottom: 0;
+  border-color:#d6d6d6;
+  color: #5a5a5a;
+  background-color: #fff;
+  height: calc(1.5em + 1rem + 2px);
+  padding: 0.5rem 1rem;
+  line-height: 1.5;
+  border-radius: 0.6rem;
+}
+
+select.form-control:focus::-ms-value {
+  color: #5a5a5a;
+  background-color: #fff;
+  border-color: #56cc9d;
+}
+
+.was-validated select:valid, select.is-valid {
+  border-color: #56cc9d;
+  padding-right: calc(0.75em + 2.3125rem);
+}
+
+.was-validated select:valid:focus, select.is-valid:focus {
+  border-color: #56cc9d;
+  box-shadow: 0 0 0 0.2rem rgba(86, 204, 157, 0.25);
+}
+
+select:focus {
+  border-color: #d0eae2;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(120, 194, 173, 0.25);
+}
+
+select:focus::-ms-value {
+  color: #5a5a5a;
+  background-color: #fff;
+}
+
+select[multiple], .custom-select[size]:not([size="1"]) {
+  height: auto;
+  padding-right: 0.75rem;
+  background-image: none;
+}
+
+select:disabled {
+  color: #888;
+  background-color: #f7f7f9;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+select:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 #5a5a5a;
+}
+
+select-sm {
+  height: calc(1.5em + 0.5rem + 2px);
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-left: 0.5rem;
+  font-size: 0.875rem;
+}
+
+select-lg {
+  height: calc(1.5em + 1rem + 2px);
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  font-size: 1.25rem;
+}
