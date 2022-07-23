@@ -1,0 +1,28 @@
+/** 
+* 1 - Set SCSS variables below
+*/
+
+
+/** 
+* 2 - Import bare minimum of bootstrap
+*/
+@import "~bootstrap/scss/bootstrap";
+@import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500;600&family=Outfit&display=swap');
+/** 
+* 3 - Now you can refine Bootstrap here
+*/
+$theme-colors: (
+  "primary": #085b48,
+  "secondary":#f9c9c5,
+  "success": #1aae8b,
+  "danger": #f0394d,
+  "info": #b6dece,
+  "warning": #f47185,
+  "light": #d4f8f0,
+  "dark": #343a40
+);
+
+$headings-font-family: 'Outfit', sans-serif;
+$font-family-base: 'Outfit', sans-serif;
+

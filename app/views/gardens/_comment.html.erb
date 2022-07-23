@@ -1,9 +1,9 @@
 <div class="card gossip-card" style="width: auto;">
   <div class="card-body">
-    <% if current_user.first_name == "" %>
+    <% if current_user.username == "" %>
       <h4>Commentaire by <%= current_user.email.split('@')[0] %></h4>
     <% else %>
-      <h4>Commentaire by <%= current_user.first_name %></h4>
+      <h4>Commentaire by <%= current_user.username %></h4>
     <% end %>
   
     <hr/>

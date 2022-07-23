@@ -12,17 +12,6 @@
 
 <!--Filter for selecting only certain gardens depending on their location -->
 
-<div class="container text-center">
-  <h3>Rechercher par ville :</h3>
-  <div class = 'form-group'>
-    <%= form_tag(gardens_path, method: :get) do %>
-      <%= text_field_tag :query %>
-      <%= submit_tag ("Rechercher"), class: "btn  btn-outline-primary" %>
-      <% end %>
-    </div>
-  <br><br>
-</div>
-
 <div class="container-map">
   <div class="list-map">
     <!--Cards -->

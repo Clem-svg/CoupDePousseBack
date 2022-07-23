@@ -1,7 +1,7 @@
 #header-custom {
   width: 100%;
   height: 70vh;
-  background-image: url(<%= asset_path 'index.png' %>);
+  background-image: url("~index.png");
   background-size: cover;
   background-position-y: 35%;
 }
@@ -9,7 +9,7 @@
 header {
   width: 100%;
   height: 90px;
-  background-image: url(<%= asset_path 'index.png' %>);
+  background-image: url("~index.png");
   background-size: cover;
   background-position-y: 35%;
 }
