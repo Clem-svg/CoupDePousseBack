@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  root 'gardens#index'
+  root "gardens#index"
   use_doorkeeper
   devise_for :users
   resources :users

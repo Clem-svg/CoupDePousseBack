@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 class GardensController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-
 
   def new
     @garden = Garden.new
@@ -36,7 +37,7 @@ class GardensController < ApplicationController
     end
   end
 
-  #Display all the gardens or the gardens found by query
+  # Display all the gardens or the gardens found by query
   def index
     @gardens = Garden.search(params[:query])
   end
@@ -53,8 +54,7 @@ class GardensController < ApplicationController
   private
 
   def gardens_params
-    params.require(:garden).permit(:title, :description, :orientation, :floor_type, :parking, :tools_available, :surface, :picture, :street_number, :street_name, :zip_code, :city, :country, :query)
+    params.require(:garden).permit(:title, :description, :orientation, :floor_type, :parking, :tools_available,
+                                   :surface, :picture, :street_number, :street_name, :zip_code, :city, :country, :query)
   end
-
 end
-

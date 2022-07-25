@@ -4,8 +4,6 @@
 
   <div class="row row-top">
     <!-- Picture -->
-    <%
-=begin%>
  <div class="col-md-6">
       <% if @garden.picture.attached? %>
         <%= image_tag @garden.picture, alt: 'picture', class: 'img-fluid picture-garden-show' %>
@@ -13,8 +11,6 @@
         <img class="img-fluid picture-garden-show" src="https://images.unsplash.com/photo-1438109382753-8368e7e1e7cf?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80">
       <% end %>
     </div> 
-<%
-=end%>
 
     <!-- description -->
     <div class="col-md-6 text-left  ">

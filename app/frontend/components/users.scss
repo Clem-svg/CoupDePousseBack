@@ -11,16 +11,17 @@
 }
 .avatar {
   position: relative;
-  height: 200px;
-  width: 200px;
+  height: 20vh;
+  width: 20vh;
   overflow: hidden;
   border-radius: 50%;
   object-fit: cover;
+  margin-bottom: 2vh;
 }
 
 .bg-secondary-light {
   background-color: #ffe3e1 !important;
-  border-radius: 10px;
+  border-radius: 5vh;
 }
 
 .bg-light-primary {

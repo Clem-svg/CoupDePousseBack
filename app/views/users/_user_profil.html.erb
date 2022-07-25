@@ -3,15 +3,12 @@
   <h2>Profil<h2>
 
   <!-- avatar-->
-  <%
-=begin%>
+
  <% if @user.avatar.attached? %>
     <%= image_tag @user.avatar, alt: 'avatar', id: 'profile_picture', class: 'avatar' %>
   <% else %>
     <img class="avatar" src="https://images.assetsdelivery.com/compings_v2/thesomeday123/thesomeday1231709/thesomeday123170900021.jpg">
   <% end %> 
-<%
-=end%>
 
   <!--infos-->
   <div class="card-body">

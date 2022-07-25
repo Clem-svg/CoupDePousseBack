@@ -10,8 +10,6 @@
       <div class="col-lg-4 col-md-6 mb-4">
         <div class="card h-100">
           <!-- Picture -->
-          <%
-=begin%>
  <%= link_to garden_path(garden.id) do %>
             <% if garden.picture.attached? %>
               <%= image_tag garden.picture, alt: 'picture', class: 'img-fluid picture-garden-index' %>
@@ -19,8 +17,6 @@
               <img class="img-fluid picture-garden-index" src="https://images.unsplash.com/photo-1438109382753-8368e7e1e7cf?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80">
             <% end %>
           <% end %> 
-<%
-=end%>
           <div class="card-body d-flex flex-column">
             <h5 class="card-title">
               <a href="<%= garden_path(garden) %>"><%= garden.title %></a>

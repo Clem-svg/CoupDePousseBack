@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 class FavoritesController < ApplicationController
   before_action :find_garden
   before_action :find_favorite, only: [:destroy]
-
 
   def create
     if already_liked?
@@ -13,7 +14,7 @@ class FavoritesController < ApplicationController
   end
 
   def destroy
-    if !(already_liked?)
+    if !already_liked?
       flash[:notice] = "Cannot unlike"
     else
       @favorite.destroy
@@ -26,6 +27,7 @@ class FavoritesController < ApplicationController
   end
 
   private
+
   def find_garden
     @garden = Garden.find(params[:garden_id])
   end

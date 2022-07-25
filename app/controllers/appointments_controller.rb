@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class AppointmentsController < ApplicationController
-  before_action :authenticate_user, only: [:new, :create, :edit, :destroy]
+  before_action :authenticate_user, only: %i[new create edit destroy]
 
   def new
     @garden = Garden.find(params[:garden_id])
@@ -22,14 +24,12 @@ class AppointmentsController < ApplicationController
     @appointment.host = @garden.user
     @appointment.guest = current_user
 
-
     if @appointment.save
       redirect_to user_path(current_user.id)
       flash[:success] = "Le rendez-vous est pris !"
     else
-    render :new
+      render :new
     end
-
   end
 
   def edit
@@ -53,13 +53,13 @@ class AppointmentsController < ApplicationController
     Appointment.find(params[:id]).destroy
     redirect_to user_path(current_user.id)
     flash[:notice] = "Rendez-vous supprimé !"
-
   end
 
   private
 
   def app_params
-    app_params = params.require(:appointment).permit(:start_date, :end_date, :message_contact, :garden_id, :host_id, :guest_id)
+    app_params = params.require(:appointment).permit(:start_date, :end_date, :message_contact, :garden_id, :host_id,
+                                                     :guest_id)
   end
 
   def authenticate_user
@@ -68,6 +68,4 @@ class AppointmentsController < ApplicationController
       redirect_to new_user_session_path
     end
   end
-
-
 end
