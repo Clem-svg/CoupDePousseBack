@@ -4,41 +4,52 @@
 
 <% else %>
   <!--Current_user dashboard-->
-  <div class="container">
-    <nav class="nav nav-tabs mt-3">
-    <a class="nav-item nav-link active" href="#profil" data-toggle="tab">Mon profil</a>
-    <a class="nav-item nav-link" href="#ad" data-toggle="tab">Mes annonces</a>
-    <a class="nav-item nav-link" href="#appointment" data-toggle="tab">Mes rendez-vous</a>
-    <a class="nav-item nav-link" href="#favorite" data-toggle="tab">Mes favoris</a>
-    <a class="nav-item nav-link" href="#message" data-toggle="tab">Mes messages</a>
-    </nav>
 
-    <div class="tab-content">
-      <!--Profil-->
-      <div class="tab-pane fade show active" id="profil">
+<!-- Nav tabs -->
+<ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link text-primary active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Profil</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link text-primary" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Annonces</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link text-primary" id="favorites-tab" data-bs-toggle="tab" data-bs-target="#favorites" type="button" role="tab" aria-controls="favorites" aria-selected="false">Favoris</button>
+  </li>
+    <li class="nav-item" role="presentation">
+    <button class="nav-link text-primary" id="appointment-tab" data-bs-toggle="tab" data-bs-target="#appointment" type="button" role="tab" aria-controls="appointment" aria-selected="false">Rendez-vous</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link text-primary" id="messages-tab" data-bs-toggle="tab" data-bs-target="#messages" type="button" role="tab" aria-controls="messages" aria-selected="false">Messages</button>
+  </li>
+</ul>
+
+<!-- Tab panes -->
+  <div class="container">
+
+<div class="tab-content mt-3">
+  <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
         <%= render partial: 'current_user_profil'%>
-      </div>
-      <!--Ad-->
-      <div class="tab-pane fade" id="ad">
+  </div>
+  <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
         <%= render partial: 'ad'%>
-      </div>
-      <!--Appointments-->
-      <div class="tab-pane fade" id="appointment">
-        <%= render partial: 'appointment'%>
-      </div>
-      <!--Favorite gardens-->
-      <div class="tab-pane fade" id="favorite">
+  </div>
+  <div class="tab-pane" id="favorites" role="tabpanel" aria-labelledby="favorites-tab">
         <%= render partial: 'favorite'%>
-      </div>
-      <!--Messages-->
-      <div class="tab-pane fade" id="message">
+  </div>
+  <div class="tab-pane" id="appointment" role="tabpanel" aria-labelledby="appointment-tab">
+      <%= render partial: 'appointment'%>
+  </div>
+  <div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab">
         <%
 =begin%>
- <%= render partial: '_room'%> 
+ <%= render partial: 'chat_room'%> 
 <%
 =end%>
-      </div>
-    </div>
+  </div>
+</div>
   </div>
 
 <% end %>
+
+

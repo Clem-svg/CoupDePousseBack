@@ -3,10 +3,11 @@
   <h2 class="border-bottom border-gray pb-3">Mes rendez-vous</h2>
   <!--Cards appointments -->
   <div class="row text-left mt-5 mx-5 text-center">
+
     <% @appointments.each do |app| %>
       <div class="col-lg-4 col-md-6 mb-4">
-        <div class="card border-info mb-3" style="max-width: 20rem;">
-          <div class="text-white card-header bg-info"><i class="fa fa-calendar"></i> <strong><%=app.start_day%></strong> <i class="fa fa-pagelines"></i> <strong><%=app.start_hour%></strong></div>
+        <div class="card border-success mb-3" style="max-width: 20rem;">
+          <div class="text-white card-header bg-success"><i class="fa fa-calendar"></i> <strong><%=app.start_day%></strong> <i class="fa fa-pagelines"></i> <strong><%=app.start_hour%></strong></div>
           <br>
           <strong class="d-block text-gray-dark">
               <%

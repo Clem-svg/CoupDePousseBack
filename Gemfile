@@ -65,3 +65,7 @@ gem "rack-cors", "~> 1.1"
 gem "faker", "~> 2.21"
 
 gem "table_print", "~> 1.5"
+
+gem 'dotenv-rails'
+
+gem 'geocoder', '~> 1.3', '>= 1.3.7'

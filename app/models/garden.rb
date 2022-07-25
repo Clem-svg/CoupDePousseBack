@@ -4,6 +4,9 @@ class Garden < ApplicationRecord
     has_many :favorites, :dependent => :destroy
     has_many :comments
 
+    geocoded_by :address    
+    after_validation :geocode
+
     validates :title, presence: true, length: { in: 5..100 }
     validates :description, presence: true, length: { in: 20..1000 }
     validates :street_number, presence: true
