@@ -21,8 +21,8 @@
       <p>Date de début : <%= @appointment.show_start_date %> </p>
       <p>Date de fin : <%= @appointment.show_end_date %></p>
       <p> Votre <% if current_user == @appointment.host%> <%='invité'%> <%else%> <%='hôte'=%> <%end%> :
- <% if current_user == @appointment.host%> <%= link_to @appointment.guest.nuserame, user_path(@appointment.guest.id)%>
-          <%else%> <%= link_to @appointment.host.username, user_path(@appointment.host.id)%>
+ <% if current_user == @appointment.host%> <%= link_to @appointment.guest.get_username, user_path(@appointment.guest.id)%>
+          <%else%> <%= link_to @appointment.host.get_username, user_path(@appointment.host.id)%>
         <%end%> 
 
       </p>

@@ -14,9 +14,9 @@ class ChatRoom < ApplicationRecord
 
   def pen_pal(user)
     if user.id == sender_id
-      receiver.username
+      receiver.get_username
     else
-      sender.username
+      sender.get_username
     end
   end
 end

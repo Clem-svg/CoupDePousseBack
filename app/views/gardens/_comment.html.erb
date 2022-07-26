@@ -1,10 +1,6 @@
 <div class="card gossip-card" style="width: auto;">
   <div class="card-body">
-    <% if current_user.username == "" %>
-      <h4>Commentaire by <%= current_user.email.split('@')[0] %></h4>
-    <% else %>
-      <h4>Commentaire by <%= current_user.username %></h4>
-    <% end %>
+      <h4>Commentaire by <%= current_user.get_username %></h4>
   
     <hr/>
     <p><%= comment.content %></p>

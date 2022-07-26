@@ -12,7 +12,7 @@
 
   <!--infos-->
   <div class="card-body">
-    <h6 class="font-weight-light">Pseudo : <p class="text-primary"><% if @user.username != nil%> <%= @user.username%></p> <% end%>
+    <h6 class="font-weight-light">Pseudo : <p class="text-primary"><%= @user.get_username%></p>
     <h6 class="font-weight-light">Description : <p class="text-primary"><% if @user.description != nil%> <%= @user.description%></p> <% end%>
     <h6 class="font-weight-light">Outils : <p class="text-primary"><% if @user.tools != nil%> <%= @user.tools%></p> <% end%>
     <h6 class="font-weight-light">Email : <p class="text-primary"><%= @user.email %></p>

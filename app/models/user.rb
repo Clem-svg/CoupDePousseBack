@@ -24,7 +24,11 @@ class User < ApplicationRecord
     user&.valid_password?(password) ? user : nil
   end
 
-  def username
-    email.split("@")[0]
+  def get_username
+    if username.empty?
+      return email.split("@")[0]
+    else
+      return username
+    end
   end
 end

@@ -8,7 +8,6 @@ class Garden < ApplicationRecord
 
   geocoded_by :address
   after_validation :geocode
-
   has_one_attached :picture
 
   validates :title, presence: true, length: { in: 5..100 }
