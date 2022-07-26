@@ -11,8 +11,8 @@ class Garden < ApplicationRecord
 
   has_one_attached :picture
 
-  validates :title, presence: true, length: {in: 5..100}
-  validates :description, presence: true, length: {in: 20..1000}
+  validates :title, presence: true, length: { in: 5..100 }
+  validates :description, presence: true, length: { in: 20..1000 }
   validates :street_number, presence: true
   validates :street_name, presence: true
   validates :zip_code, presence: true
@@ -20,7 +20,7 @@ class Garden < ApplicationRecord
   validates :country, presence: true
 
   def address
-    [street_number, street_name, zip_code, city, country].compact.join(", ")
+    [street_number, street_name, zip_code, city, country].compact.join(', ')
   end
 
   def self.search(query)

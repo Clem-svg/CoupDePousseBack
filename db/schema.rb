@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_220_725_135_518) do
+ActiveRecord::Schema.define(version: 20_220_725_224_601) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -59,6 +59,16 @@ ActiveRecord::Schema.define(version: 20_220_725_135_518) do
     t.index ["host_id"], name: "index_appointments_on_host_id"
   end
 
+  create_table "chat_rooms", force: :cascade do |t|
+    t.string "title"
+    t.bigint "sender_id"
+    t.bigint "receiver_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["receiver_id"], name: "index_chat_rooms_on_receiver_id"
+    t.index ["sender_id"], name: "index_chat_rooms_on_sender_id"
+  end
+
   create_table "comments", force: :cascade do |t|
     t.text "content"
     t.bigint "garden_id"
@@ -99,6 +109,16 @@ ActiveRecord::Schema.define(version: 20_220_725_135_518) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_gardens_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "body"
+    t.bigint "user_id"
+    t.bigint "chat_room_id"
+    t.index ["chat_room_id"], name: "index_messages_on_chat_room_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "oauth_access_tokens", force: :cascade do |t|

@@ -35,17 +35,18 @@ module Api
         @comment = Comment.find(params[:id])
         if @comment.user_id == current_user.id
           @comment.destroy
-          render json: {error: "Comment successfully deleted"}, status: :ok
+          render json: { error: 'Comment successfully deleted' }, status: :ok
         else
-          render json: {error: "Cannot delete comment written by someone else"}, status: :unprocessable_entity
+          render json: { error: 'Cannot delete comment written by someone else' },
+                 status: :unprocessable_entity
         end
       end
 
       private
 
-      def post_params
-        params.require(:comment).permit(:content)
-      end
+        def post_params
+          params.require(:comment).permit(:content)
+        end
     end
   end
 end

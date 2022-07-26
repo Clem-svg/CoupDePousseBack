@@ -1,0 +1,23 @@
+<div class="container bg-light-primary text-center my-5">
+  <br>
+  <h2 class="border-bottom border-gray pb-3">Mes messages</h2><br>
+
+  <div class="card text-left mx-5">
+    <%@chat_rooms.each do |chat_room|%>
+      <ul class="list-group list-group-flush ">
+        <li>
+          <div class="mail-list">
+            <div class="mail-list-left">
+              Conversation avec <%= link_to "#{chat_room.pen_pal(current_user)}", user_chat_room_path(current_user.id, chat_room.id), class: 'ist-group-item' %><br>
+              Objet :<%= link_to "#{chat_room.title}", user_chat_room_path(current_user.id, chat_room.id), class: 'ist-group-item' %>
+            </div>
+            <div class="mail-list-right">
+              <%= link_to "Supprimer", user_chat_room_path(current_user.id, chat_room.id), :class => "btn btn-outline-danger", :method => 'DELETE', :data => {:confirm => 'Sûr ?'} %>
+            </div>
+          </div>
+        </li>
+      </ul>
+    <%end%>
+  </div>
+  <br>
+</div>

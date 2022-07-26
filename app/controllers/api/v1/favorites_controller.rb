@@ -9,7 +9,7 @@ module Api
 
       def create
         if already_liked?
-          render json: {error: "Already liked"}, status: :unprocessable_entity
+          render json: { error: 'Already liked' }, status: :unprocessable_entity
         else
           @favorite = @garden.favorites.create(user_id: current_user.id)
           render json: @favorite
@@ -17,10 +17,10 @@ module Api
       end
 
       def destroy
-        if !already_liked?
-          render json: "Like ne peut pas être supprimé"
-        else
+        if already_liked?
           @favorite.destroy
+        else
+          render json: 'Like ne peut pas être supprimé'
         end
         respond_to do |format|
           format.json { head :no_content }
@@ -33,14 +33,14 @@ module Api
 
       private
 
-      def find_garden
-        @garden = Garden.find(params[:garden_id])
-      end
+        def find_garden
+          @garden = Garden.find(params[:garden_id])
+        end
 
-      def already_liked?
-        Favorite.where(user_id: current_user.id, garden_id:
-        params[:garden_id]).exists?
-      end
+        def already_liked?
+          Favorite.where(user_id: current_user.id, garden_id:
+          params[:garden_id]).exists?
+        end
     end
   end
 end

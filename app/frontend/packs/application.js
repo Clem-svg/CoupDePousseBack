@@ -7,26 +7,26 @@
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // compiled file. JavaScript code in this file should be added after the last require_* statement.
 //
-// Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
-// about supported directives.
-//
+
+//= require_self
+//= require jquery2
+//= require jquery_ujs
+//= require_tree ./channels
 //= require activestorage
 //= require turbolinks
+//= require action_cable
+//= require cable
 //= require nav
 
-import Rails from "@rails/ujs"
+require("@rails/ujs").start()
+require("turbolinks").start()
 require("jquery")
-import '../js/bootstrap_js_files.js'
-import './nav.js'
-import Turbolinks from "turbolinks"
-import * as ActiveStorage from "@rails/activestorage"
+require("@rails/activestorage").start()
 require("channels")
+import '../js/bootstrap_js_files.js'
+import '../js/nav.js'
+
 const images = require.context('../images', true)
-Rails.start()
-Turbolinks.start()
-ActiveStorage.start()
 
-
-$(function () {
-    $('[data-toggle="tooltip"]').tooltip()
-  })
+$(document).on('turbolinks:load', function () {
+})

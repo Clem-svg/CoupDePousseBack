@@ -14,10 +14,10 @@ class FavoritesController < ApplicationController
   end
 
   def destroy
-    if !already_liked?
-      flash[:notice] = "Cannot unlike"
-    else
+    if already_liked?
       @favorite.destroy
+    else
+      flash[:notice] = 'Cannot unlike'
     end
     redirect_to garden_path(@garden)
   end
@@ -28,12 +28,12 @@ class FavoritesController < ApplicationController
 
   private
 
-  def find_garden
-    @garden = Garden.find(params[:garden_id])
-  end
+    def find_garden
+      @garden = Garden.find(params[:garden_id])
+    end
 
-  def already_liked?
-    Favorite.where(user_id: current_user.id, garden_id:
-    params[:garden_id]).exists?
-  end
+    def already_liked?
+      Favorite.where(user_id: current_user.id, garden_id:
+      params[:garden_id]).exists?
+    end
 end

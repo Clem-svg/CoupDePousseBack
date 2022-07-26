@@ -21,13 +21,10 @@
       <p>Date de début : <%= @appointment.show_start_date %> </p>
       <p>Date de fin : <%= @appointment.show_end_date %></p>
       <p> Votre <% if current_user == @appointment.host%> <%='invité'%> <%else%> <%='hôte'=%> <%end%> :
-        <%
-=begin%>
- <% if current_user == @appointment.host%> <%= link_to @appointment.guest.name, user_path(@appointment.guest.id)%>
-          <%else%> <%= link_to @appointment.host.name, user_path(@appointment.host.id)%>
+ <% if current_user == @appointment.host%> <%= link_to @appointment.guest.nuserame, user_path(@appointment.guest.id)%>
+          <%else%> <%= link_to @appointment.host.username, user_path(@appointment.host.id)%>
         <%end%> 
-<%
-=end%>
+
       </p>
       <%= link_to "Modifier le rendez-vous", edit_garden_appointment_path(@appointment.garden.id, @appointment.id), class: "btn btn-outline-success"%>
       <%= link_to "Supprimer le rendez-vous", garden_appointment_path(@appointment.garden.id, @appointment.id), class: "btn btn-outline-danger", :method => 'DELETE', :data => {:confirm => "Vous êtes sûr de vouloir supprimer ce rendez-vous ?"} %>

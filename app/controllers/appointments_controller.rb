@@ -26,7 +26,7 @@ class AppointmentsController < ApplicationController
 
     if @appointment.save
       redirect_to user_path(current_user.id)
-      flash[:success] = "Le rendez-vous est pris !"
+      flash[:success] = 'Le rendez-vous est pris !'
     else
       render :new
     end
@@ -40,11 +40,12 @@ class AppointmentsController < ApplicationController
   def update
     @appointment = Appointment.find(params[:id])
     if @appointment.update(app_params)
-      flash[:notice] = "Rendez-vous modifié !"
-      redirect_to garden_appointment_path(@appointment.garden.id, @appointment.id)
+      flash[:notice] = 'Rendez-vous modifié !'
+      redirect_to garden_appointment_path(@appointment.garden.id,
+                                          @appointment.id)
 
     else
-      flash.now[:alert] = "Impossible de modifier le rendez-vous :"
+      flash.now[:alert] = 'Impossible de modifier le rendez-vous :'
       render :edit
     end
   end
@@ -52,20 +53,20 @@ class AppointmentsController < ApplicationController
   def destroy
     Appointment.find(params[:id]).destroy
     redirect_to user_path(current_user.id)
-    flash[:notice] = "Rendez-vous supprimé !"
+    flash[:notice] = 'Rendez-vous supprimé !'
   end
 
   private
 
-  def app_params
-    app_params = params.require(:appointment).permit(:start_date, :end_date, :message_contact, :garden_id, :host_id,
-                                                     :guest_id)
-  end
-
-  def authenticate_user
-    unless current_user
-      flash[:danger] = "Vous devez vous connecter pour prendre un rendez-vous"
-      redirect_to new_user_session_path
+    def app_params
+      app_params = params.require(:appointment).permit(:start_date, :end_date, :message_contact, :garden_id, :host_id,
+                                                       :guest_id)
     end
-  end
+
+    def authenticate_user
+      unless current_user
+        flash[:danger] = 'Vous devez vous connecter pour prendre un rendez-vous'
+        redirect_to new_user_session_path
+      end
+    end
 end

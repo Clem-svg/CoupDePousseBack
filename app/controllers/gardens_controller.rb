@@ -19,7 +19,7 @@ class GardensController < ApplicationController
   def update
     @garden = Garden.find(params[:id])
     if @garden.update(gardens_params)
-      flash[:notice] = "Annonce éditée !"
+      flash[:notice] = 'Annonce éditée !'
       redirect_to garden_path(@garden.id)
     else
       flash.now[:alert] = "Impossible d'éditer l'annonce' :"
@@ -31,7 +31,7 @@ class GardensController < ApplicationController
     @garden = Garden.new(gardens_params.merge(user_id: current_user.id))
     if @garden.save
       redirect_to root_path
-      flash[:success] = "Annonce créée avec succès !"
+      flash[:success] = 'Annonce créée avec succès !'
     else
       render :new
     end
@@ -53,8 +53,8 @@ class GardensController < ApplicationController
 
   private
 
-  def gardens_params
-    params.require(:garden).permit(:title, :description, :orientation, :floor_type, :parking, :tools_available,
-                                   :surface, :picture, :street_number, :street_name, :zip_code, :city, :country, :query)
-  end
+    def gardens_params
+      params.require(:garden).permit(:title, :description, :orientation, :floor_type, :parking, :tools_available,
+                                     :surface, :picture, :street_number, :street_name, :zip_code, :city, :country, :query)
+    end
 end

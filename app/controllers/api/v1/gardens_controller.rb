@@ -35,7 +35,9 @@ module Api
           render json: @garden
         # format.json { render :show, status: :created, location: @garden }
         else
-          format.json { render json: @garden.errors, status: :unprocessable_entity }
+          format.json do
+            render json: @garden.errors, status: :unprocessable_entity
+          end
         end
       end
 
@@ -52,25 +54,29 @@ module Api
       def destroy
         if @garden.user_id == current_user.id
           @garden.destroy
-          render json: {error: "Garden successfully deleted"}, status: :ok
+          render json: { error: 'Garden successfully deleted' }, status: :ok
         else
-          render json: {error: "Cannot delete garden not created by this user"}, status: :unprocessable_entity
+          render json: { error: 'Cannot delete garden not created by this user' },
+                 status: :unprocessable_entity
         end
       end
 
       private
 
-      # Use callbacks to share common setup or constraints between actions.
-      def set_garden
-        @garden = Garden.find_by_id(params[:id])
-        render json: {error: "Garden not found"}, status: :not_found if @garden.nil?
-      end
+        # Use callbacks to share common setup or constraints between actions.
+        def set_garden
+          @garden = Garden.find_by_id(params[:id])
+          if @garden.nil?
+            render json: { error: 'Garden not found' },
+                   status: :not_found
+          end
+        end
 
-      # Only allow a list of trusted parameters through.
-      def garden_params
-        params.require(:garden).permit(:title, :description, :orientation, :floor_type, :parking, :tools_available,
-                                       :surface, :street_number, :street_name, :zip_code, :city, :country)
-      end
+        # Only allow a list of trusted parameters through.
+        def garden_params
+          params.require(:garden).permit(:title, :description, :orientation, :floor_type, :parking, :tools_available,
+                                         :surface, :street_number, :street_name, :zip_code, :city, :country)
+        end
     end
   end
 end

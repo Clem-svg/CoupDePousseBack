@@ -11,7 +11,7 @@ module Api
         def create
           client_app = Doorkeeper::Application.find_by(uid: user_params[:client_id])
           unless client_app
-            return render json:   {error: "Client Not Found. Check Provided Client Id."},
+            return render json: { error: 'Client Not Found. Check Provided Client Id.' },
                           status: :unauthorized
           end
 
@@ -22,15 +22,16 @@ module Api
             render json: render_user(user, client_app), status: :ok
           else
 
-            render json: {errors: user.errors.full_messages}, status: :unprocessable_entity
+            render json: { errors: user.errors.full_messages },
+                   status: :unprocessable_entity
           end
         end
 
         private
 
-        def user_params
-          params.permit(:email, :password, :client_id)
-        end
+          def user_params
+            params.permit(:email, :password, :client_id)
+          end
       end
     end
   end

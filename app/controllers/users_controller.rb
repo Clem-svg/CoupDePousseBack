@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    flash[:notice] = "Registration needed"
+    flash[:notice] = 'Registration needed'
   end
 
   def edit
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(current_user.id)
     if @user.update(user_params)
-      flash[:notice] = "Profil édité !"
+      flash[:notice] = 'Profil édité !'
       redirect_to user_path(@user)
     else
       flash.now[:alert] = "Impossible d'éditer le profil :"
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
 
   private
 
-  def user_params
-    params.require(:user).permit(:username, :avatar, :description, :tools)
-  end
+    def user_params
+      params.require(:user).permit(:username, :avatar, :description, :tools)
+    end
 end

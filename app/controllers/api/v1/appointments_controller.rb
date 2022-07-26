@@ -48,19 +48,23 @@ module Api
 
       def destroy
         Appointment.find(params[:id]).destroy
-        render json: {error: "Appointment successfully deleted"}
+        render json: { error: 'Appointment successfully deleted' }
       end
 
       private
 
-      def set_appointment
-        @appointment = Appointment.find_by_id(params[:id])
-        render json: {error: "Appointment not found"}, status: :not_found if @appointment.nil?
-      end
+        def set_appointment
+          @appointment = Appointment.find_by_id(params[:id])
+          if @appointment.nil?
+            render json: { error: 'Appointment not found' },
+                   status: :not_found
+          end
+        end
 
-      def app_params
-        app_params = params.require(:appointment).permit(:start_date, :end_date, :message_contact)
-      end
+        def app_params
+          app_params = params.require(:appointment).permit(:start_date,
+                                                           :end_date, :message_contact)
+        end
     end
   end
 end
