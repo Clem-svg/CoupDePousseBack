@@ -4,6 +4,7 @@ class ChatRoom < ApplicationRecord
   belongs_to :sender, class_name: 'User'
   belongs_to :receiver, class_name: 'User'
   has_many :messages, dependent: :destroy
+  validates :title, presence: true
   # after_create :new_conversation_email
 
   # # emails methods

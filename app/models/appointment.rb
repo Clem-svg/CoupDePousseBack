@@ -4,13 +4,15 @@ class Appointment < ApplicationRecord
   belongs_to :guest, class_name: 'User'
   belongs_to :host, class_name: 'User'
   belongs_to :garden
-
+  validates :guest, presence: true
+  validates :host, presence: true
+  validates :garden, presence: true
   validates_presence_of :start_date, :end_date
   validate :start_must_be_before_end_date
   validate :start_in_future
-  after_create :new_app_guest, :new_app_host
+  # after_create :new_app_guest, :new_app_host
   validate :no_appointment_overlap
-  before_destroy :destroy_app_guest, :destroy_app_host
+  # before_destroy :destroy_app_guest, :destroy_app_host
 
   # # emails methods
 

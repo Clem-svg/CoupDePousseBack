@@ -1,4 +1,8 @@
+<% if message.user == current_user %>
 <div class="mb-2 message-sent">
+  <% else %>
+<div class="mb-2 message-received">
+<% end %>
   <div class="body-container">
     <div class="text-message">
       <%= message.body %>

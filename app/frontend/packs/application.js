@@ -8,15 +8,6 @@
 // compiled file. JavaScript code in this file should be added after the last require_* statement.
 //
 
-//= require_self
-//= require jquery2
-//= require jquery_ujs
-//= require_tree ./channels
-//= require activestorage
-//= require turbolinks
-//= require action_cable
-//= require cable
-//= require nav
 
 require("@rails/ujs").start()
 require("turbolinks").start()
@@ -27,6 +18,8 @@ import '../js/bootstrap_js_files.js'
 import '../js/nav.js'
 
 const images = require.context('../images', true)
+import '../css/application.scss'
+
 
 $(document).on('turbolinks:load', function () {
 })

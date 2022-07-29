@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ChatRoomsController < ApplicationController
+  before_action :set_chat_room, only: [:show, :edit, :update, :destroy]
+
   def index
     @chat_rooms = ChatRoom.where(sender_id: current_user.id).or(ChatRoom.where(receiver_id: current_user.id))
   end
@@ -25,7 +27,7 @@ class ChatRoomsController < ApplicationController
     end
   end
 
-  def show
+  def show   
     @chat_room = ChatRoom.includes(:messages).find_by(id: params[:id])
     @message = Message.new
   end
@@ -34,16 +36,18 @@ class ChatRoomsController < ApplicationController
     @chat_room = ChatRoom.find(params[:id])
     @chat_room.destroy
     respond_to do |format|
-      format.html do
-        redirect_to root_path, notice: 'La conversation est supprimée'
-      end
+      format.html { redirect_to root_path, notice: "La conversation est supprimée" }
       format.js {}
     end
   end
 
   private
 
-    def chat_room_params
-      params.require(:chat_room).permit(:title, :sender_id, :receiver_id)
-    end
+  def set_chat_room
+    @chat_room = ChatRoom.find(params[:id])
+  end
+
+  def chat_room_params
+    params.require(:chat_room).permit(:title, :sender_id, :receiver_id)
+  end
 end

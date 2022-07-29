@@ -11,9 +11,14 @@ Rails.application.routes.draw do
     resources :appointments
   end
 
+  resources :messages
+  resources :chat_rooms
+
   resources :users do
     resources :chat_rooms, except: [:edit]
   end
+  resources :chat_rooms, only: %i[new create show index update]
+
   mount ActionCable.server => '/cable'
 
   draw :api

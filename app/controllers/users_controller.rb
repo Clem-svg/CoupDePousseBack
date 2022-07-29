@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     @appointments = Appointment.where(guest_id: current_user.id).or(Appointment.where(host_id: current_user.id))
 
     # selecting chatrooms created by user or sent to user
-    #   @chat_rooms = ChatRoom.where(sender_id: current_user.id).or(ChatRoom.where(receiver_id: current_user.id))
+    @chat_rooms = ChatRoom.where(sender_id: current_user.id).or(ChatRoom.where(receiver_id: current_user.id))
   end
 
   def create
