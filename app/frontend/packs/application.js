@@ -18,7 +18,6 @@ import '../js/bootstrap_js_files.js'
 import '../js/nav.js'
 
 const images = require.context('../images', true)
-import '../css/application.scss'
 
 
 $(document).on('turbolinks:load', function () {
