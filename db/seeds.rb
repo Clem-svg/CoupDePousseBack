@@ -77,8 +77,8 @@ tp User.all
     city: Faker::Address.city,
     country: Faker::Address.country,
     user_id: User.ids.sample,
-    latitude: Faker::Address.latitude,
-    longitude: Faker::Address.longitude
+    # latitude: Faker::Address.latitude,
+    # longitude: Faker::Address.longitude
   )
 end
 

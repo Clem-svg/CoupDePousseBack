@@ -7,34 +7,49 @@ RSpec.describe Garden, type: :model do
     @garden = FactoryBot.create(:garden)
   end
 
+  it 'has a valid factory' do
+    expect(build(:garden)).to be_valid
+  end
+
   context 'validations' do
     it 'is valid with valid attributes' do
       expect(@garden).to be_a(Garden)
-      expect(@garden).to be_valid
+    end
+    describe '#title' do
+      it { expect(@garden).to validate_presence_of(:title) }
+    end
+    describe '#description' do
+      it { expect(@garden).to validate_presence_of(:description) }
+    end
+    describe '#street_number' do
+      it { expect(@garden).to validate_presence_of(:street_number) }
+    end
+    describe '#street_name' do
+      it { expect(@garden).to validate_presence_of(:street_name) }
+    end
+    describe '#street_name' do
+      it { expect(@garden).to validate_presence_of(:street_name) }
+    end
+    describe '#city' do
+      it { expect(@garden).to validate_presence_of(:city) }
+    end
+    describe '#country' do
+      it { expect(@garden).to validate_presence_of(:country) }
     end
 
     describe '#title' do
-      it 'should be at least 5 characters' do
-        invalid_garden = FactoryBot.build(:garden, title: 'aa')
-        expect(invalid_garden).not_to be_valid
-        expect(invalid_garden.errors.include?(:garden)).to eq(false)
-      end
+      it { expect(@garden).to validate_length_of(:title).is_at_least(5) }
     end
 
     describe '#description' do
-      it 'should be at least 5 characters' do
-        invalid_garden = FactoryBot.build(:garden, description: 'aaaa')
-        expect(invalid_garden).not_to be_valid
-        expect(invalid_garden.errors.include?(:garden)).to eq(false)
-      end
+      it { expect(@garden).to validate_length_of(:description).is_at_least(20) }
     end
   end
 
   context 'associations' do
-    it 'should belongs_to user' do
+    describe 'should belongs_to user' do
       user = FactoryBot.create(:user)
-      garden = FactoryBot.create(:garden, user: user)
-      expect(user.gardens.include?(garden)).to eq(true)
+      it { expect(user).to have_many(:gardens) }
     end
   end
 end

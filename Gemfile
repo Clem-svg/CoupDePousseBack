@@ -59,6 +59,9 @@ group :test do
   gem 'capybara', '>= 3.26'
   gem 'selenium-webdriver', '>= 4.0.0.rc1'
   # Easy installation and use of web drivers to run system tests with browsers
+  gem 'nyan-cat-formatter', '~> 0.12.0'
+  gem 'rails-controller-testing', '~> 1.0', '>= 1.0.5'
+  gem 'shoulda-matchers', '~> 5.1'
   gem 'webdrivers'
 end
 

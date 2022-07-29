@@ -4,21 +4,22 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   before(:each) do
-    @user = FactoryBot.create(:user)    
+    @user = FactoryBot.create(:user)
   end
 
-  context 'validation' do
-    it 'is valid with valid attributes' do
-      expect(@user).to be_a(User)
-      expect(@user).to be_valid
-    end
+  it 'has a valid factory' do
+    expect(build(:user)).to be_valid
+  end
 
-    describe '#email' do
-      it 'should respect email convention' do
-        invalid_user = User.create(email: 'johndoehotmail.com', password: 'password', password_confirmation: 'password')
-        expect(invalid_user).not_to be_valid
-        expect(invalid_user.errors.include?(:email)).to eq(true)
-      end
+  it 'is valid with valid attributes' do
+    expect(@user).to be_a(User)
+  end
+
+  describe '#email' do
+    it 'should respect email convention' do
+      invalid_user = User.create(email: 'johndoehotmail.com', password: 'password', password_confirmation: 'password')
+      expect(invalid_user).not_to be_valid
+      expect(invalid_user.errors.include?(:email)).to eq(true)
     end
   end
 
