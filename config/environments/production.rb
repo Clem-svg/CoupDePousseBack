@@ -42,6 +42,11 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 
+  config.action_cable.allowed_request_origins = ['https://simplon-cdp-staging.herokuapp.com']
+  # 'http://coup-depousse.herokuapp.com']
+
+  config.action_cable.url = 'wss://simplon-cdp-staging.herokuapp/cable'
+
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
   # config.action_cable.url = 'wss://example.com/cable'
