@@ -77,3 +77,8 @@ gem 'rack-cors', '~> 1.1'
 gem 'geocoder', '~> 1.3', '>= 1.3.7'
 
 gem 'redis'
+
+gem 'net-imap', require: false 
+
+gem 'net-pop', require: false
+
