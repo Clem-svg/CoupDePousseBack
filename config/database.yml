@@ -81,6 +81,6 @@ test:
 #
 production:
   <<: *default
-  database: coupdepousseback_production
-  username: coupdepousseback
-  password: <%= ENV['COUPDEPOUSSEBACK_DATABASE_PASSWORD'] %>
+  database: <%= ENV['COUPDEPOUSSEBACK_DATABASE'] %>
+  # username: coupdepousseback
+  # password: <%= ENV['COUPDEPOUSSEBACK_DATABASE_PASSWORD'] %>
