@@ -3,10 +3,10 @@
 User.destroy_all
 Garden.destroy_all
 
-if Doorkeeper::Application.count.zero?
-  Doorkeeper::Application.create!(name: 'React',
-                                  redirect_uri: 'http://localhost:3000/', scopes: '')
-end
+# if Doorkeeper::Application.count.zero?
+#   Doorkeeper::Application.create!(name: 'React',
+#                                   redirect_uri: 'http://localhost:3000/', scopes: '')
+# end
 
 User.first_or_create(
   email: 'test@test.test',
