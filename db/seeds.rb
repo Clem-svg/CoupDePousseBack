@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'faker'
-
 User.destroy_all
 Garden.destroy_all
 
@@ -23,9 +21,9 @@ Garden.create!(
   tomber malade.",
   orientation: 'Sud',
   floor_type: 'Terreau',
-  is_available: Faker::Boolean.boolean,
-  parking: Faker::Boolean.boolean,
-  tools_available: Faker::Boolean.boolean,
+  is_available: true,
+  parking: true,
+  tools_available: false,
   surface: '3',
   street_number: '62',
   street_name: 'Résidence Elysée 2',
@@ -44,7 +42,7 @@ puts '*' * 20
 puts 'USERS'
 tp User.all
 
-20.times do
+10.times do
   Garden.create!(
     title: [
       'Joli petit jardinet',
@@ -65,15 +63,15 @@ tp User.all
     orientation: %w[Nord Sud Est Ouest].sample,
     floor_type: ['Pauvre et humide', 'Riche et humide', 'Pauvre et sec',
                  'Riche et sec'].sample,
-    is_available: Faker::Boolean.boolean,
-    parking: Faker::Boolean.boolean,
-    tools_available: Faker::Boolean.boolean,
-    surface: Faker::Number.between(from: 10, to: 300),
-    street_number: Faker::Number.between(from: 1, to: 150),
-    street_name: Faker::Address.street_name,
+    is_available: [true, false].sample,
+    parking: [true, false].sample,
+    tools_available: [true, false].sample,
+    surface: [15, 20, 3, 9, 78].sample,
+    street_number: [15, 20, 3, 9, 78].sample,
+    street_name: 'rue Victor Hugo',
     zip_code: '78172',
-    city: Faker::Address.city,
-    country: Faker::Address.country,
+    city: ['Paris', 'Rueil Malmaison', 'Versailles', 'Boulogne'],
+    country: 'France',
     user_id: User.ids.sample
   )
 end
