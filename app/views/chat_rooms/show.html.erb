@@ -2,14 +2,15 @@
 <div id="user-id" data-user-id="<%= current_user.id %>"></div>
 
 <div class="container bg-light-primary text-center my-5 ">
-            <h2><%= @chat_room.title %> </h2>
-            <p class="text-right"> <%= link_to 'Retour', user_chat_rooms_path %> </p>
+  <h2><%= @chat_room.title %> </h2>
+  <p class="text-right"> <%= link_to 'Retour', user_chat_rooms_path %> </p>
       <div class="chat-room">
         <div class="container-chat">
           <% @chat_room.messages.each do |message| %>
             <%= render partial: 'messages/newmessage', locals: {message: message} %>
           <% end %>
-          <div id="messages">
+        </div>
+          <div class="container-chat" id="messages">
             <% @chat_room.messages.each do |message| %>
               <%= render partial: 'messages/message', locals: {message: message} %>
             <% end %>
