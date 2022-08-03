@@ -80,8 +80,8 @@ puts 'USERS'
     surface: [15, 20, 3, 9, 78].sample,
     street_number: [15, 20, 3, 9, 78].sample,
     street_name: 'rue Victor Hugo',
-    zip_code: '78172',
-    city: ['Paris', 'Rueil Malmaison', 'Versailles', 'Boulogne'],
+    zip_code: '75011',
+    city: ['Paris', 'Rueil Malmaison', 'Versailles', 'Boulogne'].sample,
     country: 'France',
     user_id: User.ids.sample
   )
