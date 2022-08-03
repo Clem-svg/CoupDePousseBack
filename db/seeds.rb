@@ -33,11 +33,22 @@ Garden.create!(
   user_id: 1
 )
 
-5.times do
-  user = User.new(email: "#{Faker::Name.first_name}@yopmail.com", password: 'testtest',
-                  password_confirmation: 'testtest')
-  user.save!
-end
+user = User.new(email: 'hello@yopmail.com', password: 'testtest',
+                password_confirmation: 'testtest')
+user.save!
+
+user1 = User.new(email: 'hello1@yopmail.com', password: 'testtest',
+                password_confirmation: 'testtest')
+user1.save!
+
+user2 = User.new(email: 'hello2@yopmail.com', password: 'testtest',
+                password_confirmation: 'testtest')
+user2.save!
+
+user3 = User.new(email: 'hello3@yopmail.com', password: 'testtest',
+                password_confirmation: 'testtest')
+user3.save!
+
 puts '*' * 20
 puts 'USERS'
 tp User.all
