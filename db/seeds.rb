@@ -74,7 +74,7 @@ tp User.all
     zip_code: '78172',
     city: Faker::Address.city,
     country: Faker::Address.country,
-    user_id: User.ids.sample,
+    user_id: User.ids.sample
     # latitude: Faker::Address.latitude,
     # longitude: Faker::Address.longitude
   )

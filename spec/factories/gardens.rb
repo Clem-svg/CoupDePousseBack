@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :garden, class: Garden do
     user { FactoryBot.create(:user) }
