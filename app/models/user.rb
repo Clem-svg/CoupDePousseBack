@@ -7,6 +7,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :email, format: URI::MailTo::EMAIL_REGEXP
+  validate :password_complexity
   has_many :gardens
   has_many :appointments, through: :gardens
   has_many :comments, through: :gardens
@@ -19,11 +20,19 @@ class User < ApplicationRecord
   has_many :messages, dependent: :destroy
   has_one_attached :avatar
 
+  def password_complexity
+    return if password.blank? || password =~ /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,70}$/
+    errors.add :password, 
+    'Le mot de passe doit contenir au moins 8 caractères. Il doit inclure au moins une majuscule, une minuscule, un chiffre et un caractère spécial.'
+  end
+  
   # méthode d'identification issue de la documentation Devise
   def self.authenticate(email, password)
     user = User.find_for_authentication(email:)
     user&.valid_password?(password) ? user : nil
   end
+
+
 
   def get_username
     if username.empty?

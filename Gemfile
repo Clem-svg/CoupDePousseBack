@@ -37,6 +37,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'factory_bot_rails', '~> 6.2'
   gem 'faker', '~> 2.21'
+  gem 'rubycritic', require: false
   gem 'rspec-rails', '~> 5.1', '>= 5.1.2'
   gem 'table_print', '~> 1.5'
 end
@@ -81,3 +82,7 @@ gem 'redis'
 gem 'net-imap', require: false
 
 gem 'net-pop', require: false
+
+gem 'rack-attack'
+
+gem 'brakeman'
