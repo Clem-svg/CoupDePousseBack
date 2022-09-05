@@ -9,7 +9,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
   end
 
   allow do
-    origins "https://coup-de-pousse-deploy-mb1leuckk-clem-svg.vercel.app/"
-    resource "*", headers: :any, methods: [:get, :post, :put, :patch, :delete, :options, :head], credentials: true
+    origins 'https://coup-de-pousse-deploy.vercel.app'
+    resource '*', headers: :any, methods: %i[get post put patch delete options head], credentials: true
   end
 end
