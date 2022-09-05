@@ -8,8 +8,8 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
              headers: :any, methods: %i[get post put patch delete options head], credentials: true
   end
 
-  # allow do
-  #   origins "https://jdh-authentication-app-react.herokuapp.com"
-  #   resource "*", headers: :any, methods: [:get, :post, :put, :patch, :delete, :options, :head], credentials: true
-  # end
+  allow do
+    origins "https://coup-de-pousse-deploy-mb1leuckk-clem-svg.vercel.app/"
+    resource "*", headers: :any, methods: [:get, :post, :put, :patch, :delete, :options, :head], credentials: true
+  end
 end
