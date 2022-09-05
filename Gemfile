@@ -86,3 +86,5 @@ gem 'net-pop', require: false
 gem 'rack-attack'
 
 gem 'brakeman'
+
+gem "aws-sdk-s3", "~> 1.114"
