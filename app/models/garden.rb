@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Garden < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, dependent: :destroy
   has_many :appointments
   has_many :favorites, dependent: :destroy
   has_many :comments

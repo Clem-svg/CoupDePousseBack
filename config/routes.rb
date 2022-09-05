@@ -2,7 +2,6 @@
 
 Rails.application.routes.draw do
   root 'gardens#index'
-  get '/infos', to: 'pages#home'
   use_doorkeeper
   devise_for :users
   resources :users
